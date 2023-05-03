@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Boat Booking Service</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<header>
+		<h1>Boat Booking Service</h1>
+		<nav>
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#about">About Us</a></li>
+				<li><a href="#boats">Boats</a></li>
+				<li><a href="#contact">Contact Us</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section id="banner">
+            <div class="background-position">
+                <img src="D:\project mady\pics\OIP.jpg">
+			<h2>Welcome to Boat Booking Service</h2>
+			<p>Book your perfect boat today and enjoy the ride!</p>
+			<a href="#boats" class="button">View Boats</a>
+		</section>
+
+		<section id="about">
+			<h2 style=" 
+				width: 144px;
+				">About Us</h2>
+			<p>Boat Booking Service is a leading provider of boat rentals in the area. We offer a wide variety of boats to suit all your needs, whether you're looking for a relaxing day on the water or an adrenaline-packed adventure.</p>
+			<p>Our team of experienced professionals is dedicated to providing you with the best possible service, ensuring that your boat rental experience is stress-free and enjoyable.</p>
+		</section>
+
+		<section id="boats">
+			<h2>Our Boats</h2>
+			<p>Check out our selection of boats below and book your perfect boat today!</p>
+			<div class="boat-container">
+				<div class="boat">
+					<img src="D:\project mady\pics\speedboat 2.jpg">
+					<h3>Speedboat</h3>
+					<p>Max Capacity: 6 people</p>
+					<p class="price">$100 per hour</p>
+					<button>Add to Cart</button>
+				</div>
+				<div class="boat">
+					<img src="D:\project mady\pics\pontoon.jpg">
+					<h3>Pontoon Boat</h3>
+					<p>Max Capacity: 10 people</p>
+					<p class="price">$150 per hour</p>
+					<button>Add to Cart</button>
+				</div>
+				<div class="boat">
+					<img src="D:\project mady\sailboat.jpg">
+					<h3>Sailboat</h3>
+					<p>Max Capacity: 4 people</p>
+					<p class="price">$200 per hour</p>
+					<button>Add to Cart</button>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact">
+			<h2>Contact Us</h2>
+			<form>
+				<label>Name:</label>
+				<input type="text" name="name" required><br>
+				<label>Email:</label>
+				<input type="email" name="email" required><br>
+				<label>Message:</label>
+				<textarea name="message" rows="5" required></textarea><br>
+				<input type="submit" value="Send">
+			</form>
+		</section>
+	</main>
+	<footer>
+		<p>© 2023 Boat Booking</p>
+	</footer>
+	<script>
+
+		// Get all the "Add to Cart" buttons and attach click event listeners to them
+		var addToCartButtons = document.querySelectorAll('.boat button');
+		
+		for (var i = 0; i  ;addToCartButtons.length); i++; {
+			addToCartButtons[i].addEventListener('click', addToCart)}
+		
+		// Function to add a boat to the shopping cart
+		function addToCart(event) {
+			var boat = event.target.parentNode;
+			var boatName = boat.querySelector('h3').textContent;
+			var boatPrice = boat.querySelector('.price').textContent;
+		
+			var cartItem = document.createElement('div');
+			cartItem.classList.add('cart-item');
+			cartItem.innerHTML = '<h4>' + boatName + '</h4><p>' + boatPrice + '</p>';
+		
+			var cartItems = document.querySelector('.cart-items');
+			cartItems.appendChild(cartItem);
+		
+			updateCartTotal();
+		}
+		
+		// Function to update the total price of the shopping cart
+		function updateCartTotal() {
+			var cartItemContainer = document.querySelector('.cart-items');
+			var cartItems = cartItemContainer.querySelectorAll('.cart-item');
+			var total = 0;
+		
+			for (var i = 0; i < cartItems.length; i++) {
+				var cartItem = cartItems[i];
+				var priceElement = cartItem.querySelector('p');
+				var price = parseFloat(priceElement.textContent.replace('$', ''));
+				total += price;
+			}
+		
+			var totalElement = document.querySelector('.cart-total p');
+			totalElement.textContent = '$' + total.toFixed(2);
+		}
+		</script>
+	
+</body>
+</html>
